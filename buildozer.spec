@@ -35,6 +35,9 @@ android.allow_backup = True
 # 使用 SAF 系统文件选择器，不需要存储权限
 android.permissions =
 
+# 使用本地已 patch 的 python-for-android（修正 opencv 对 numpy 1.x 头文件的路径）
+p4a.source_dir = p4a
+
 [buildozer]
 
 log_level = 2

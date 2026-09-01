@@ -36,6 +36,11 @@ jobs:
           path: ~/.buildozer
           key: buildozer-${{ runner.os }}-v1
 
+      - name: Patch p4a (numpy 1.x include path for opencv)
+        run: |
+          git clone --depth 1 https://github.com/kivy/python-for-android ./p4a
+          python scripts/patch_p4a_opencv.py ./p4a
+
       - name: Build debug APK
         run: buildozer -v android debug
 
