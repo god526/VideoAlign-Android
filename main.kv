@@ -1,0 +1,139 @@
+#:kivy 2.0
+#:import PreviewWidget app_kivy.preview_widget.PreviewWidget
+
+<MainScreen>:
+    orientation: 'vertical'
+    padding: dp(8)
+    spacing: dp(6)
+
+    # ---- 标题栏 ----
+    BoxLayout:
+        size_hint_y: None
+        height: dp(32)
+        Label:
+            id: title_label
+            text: 'VideoAlign — 视频嵌入对齐'
+            bold: True
+            font_size: sp(16)
+            color: 0.85, 0.9, 0.95, 1
+
+    # ---- 导入按钮 ----
+    BoxLayout:
+        size_hint_y: None
+        height: dp(52)
+        spacing: dp(8)
+        Button:
+            text: '导入主视频'
+            font_size: sp(14)
+            on_release: root.on_import_main()
+        Button:
+            text: '添加嵌入视频'
+            font_size: sp(14)
+            on_release: root.on_import_overlay()
+
+    # ---- 预览画布 ----
+    PreviewWidget:
+        id: preview
+        size_hint_y: 1
+
+    # ---- 时间轴 ----
+    BoxLayout:
+        size_hint_y: None
+        height: dp(40)
+        spacing: dp(6)
+        Label:
+            text: '时间'
+            size_hint_x: None
+            width: dp(42)
+        Slider:
+            id: timeline
+            min: 0
+            max: 1
+            value: 0
+            on_value: root.on_timeline_value(self.value)
+        Label:
+            id: time_label
+            text: '00:00:00.000 / 00:00:00.000'
+            size_hint_x: None
+            width: dp(200)
+            font_size: sp(12)
+
+    # ---- 播放控制 ----
+    BoxLayout:
+        size_hint_y: None
+        height: dp(52)
+        spacing: dp(8)
+        Button:
+            text: '-1帧'
+            font_size: sp(14)
+            on_release: root.step_back()
+        Button:
+            id: play_btn
+            text: '播放'
+            font_size: sp(15)
+            bold: True
+            on_release: root.toggle_play()
+        Button:
+            text: '+1帧'
+            font_size: sp(14)
+            on_release: root.step_forward()
+
+    # ---- 同步点 ----
+    BoxLayout:
+        size_hint_y: None
+        height: dp(52)
+        spacing: dp(6)
+        Button:
+            text: '设A=当前'
+            font_size: sp(12)
+            size_hint_x: None
+            width: dp(88)
+            on_release: root.set_sync_a()
+        Label:
+            id: sync_a_label
+            text: 'A = 00:00:00.000'
+            font_size: sp(11)
+            size_hint_x: None
+            width: dp(120)
+        TextInput:
+            id: time_b
+            text: '0.0'
+            hint_text: 'B时间(秒)'
+            input_type: 'number'
+            font_size: sp(13)
+            size_hint_x: None
+            width: dp(90)
+        Button:
+            text: '+同步点'
+            font_size: sp(12)
+            on_release: root.add_sync_point()
+        Label:
+            id: sync_count
+            text: '同步点: 0'
+            font_size: sp(11)
+            size_hint_x: None
+            width: dp(92)
+
+    # ---- 导出 ----
+    BoxLayout:
+        size_hint_y: None
+        height: dp(52)
+        spacing: dp(8)
+        Button:
+            text: '导出视频'
+            font_size: sp(14)
+            bold: True
+            on_release: root.on_export()
+        Button:
+            text: '撤销同步点'
+            font_size: sp(12)
+            on_release: root.undo_sync_point()
+
+    # ---- 状态栏 ----
+    Label:
+        id: status_label
+        text: '就绪'
+        size_hint_y: None
+        height: dp(30)
+        font_size: sp(12)
+        color: 0.7, 0.8, 0.9, 1

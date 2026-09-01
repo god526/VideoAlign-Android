@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Buildozer / Android 构建产物
+bin/
+.buildozer/
+*.apk
+
+# 虚拟环境
+va-venv/
+.venv/
+venv/
+
+# 日志与临时文件
+*.log
+.kivy/
+va-kivy-home/
+
+# 编辑器
+.vscode/
+.idea/
