@@ -14,8 +14,9 @@ source.include_patterns = *.kv,app_kivy/**,core/**,models/**,utils/**,video/**,f
 version = 0.1.0
 
 # python3 必须是第一个；opencv/ffmpeg 由 python-for-android 交叉编译
-# numpy 固定到 1.26.4：p4a 默认的 numpy 2.3.0 在 NDK 25b 下编译失败（unordered_map）
-requirements = python3,kivy==2.3.1,numpy==1.26.4,opencv,ffmpeg
+# numpy 用 git 拉取，tag 是 v1.26.4（带 v 前缀），必须写 v1.26.4
+# p4a 默认 numpy 2.3.0 在 NDK 25b 下编译失败（unordered_map），故锁定 1.26.4
+requirements = python3,kivy==2.3.1,numpy==v1.26.4,opencv,ffmpeg
 
 orientation = portrait
 fullscreen = 0
