@@ -21,7 +21,7 @@ fullscreen = 0
 
 # Android SDK / NDK 版本（buildozer 会自动下载）
 android.api = 34
-android.minapi = 21
+android.minapi = 24
 android.ndk = 25b
 
 # 只构建 64 位，覆盖绝大多数现代手机，且构建更快
