@@ -65,6 +65,21 @@ def main():
     )
     print(patch_file(thorvg, [(old_block, new_block)]))
 
+    # 3) libthorvg: remove libomp.so from built_libraries so the framework
+    #    does not try to install a file that was never produced.
+    old_built = (
+        '    built_libraries = {\n'
+        '        "libthorvg-1.so": "install/lib",\n'
+        '        "libomp.so": "install/lib"\n'
+        '    }\n'
+    )
+    new_built = (
+        '    built_libraries = {\n'
+        '        "libthorvg-1.so": "install/lib"\n'
+        '    }\n'
+    )
+    print(patch_file(thorvg, [(old_built, new_built)]))
+
     return 0
 
 
